@@ -5,4 +5,5 @@ This web application is a passion project developed for Dev Bootcamp SF. The MVP
 Upon reaching MVP, 3-D plotting and viewing of selected catalogs will be implemented.
 
 ![Schema](./eq_project/eq-app-schema.png)
+
 **Database Schema**
