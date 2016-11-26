@@ -14,7 +14,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
@@ -77,10 +77,11 @@ WSGI_APPLICATION = 'eq_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'eqdata',
         'USER': 'georob',
-        'HOST': '127.0.0.1',
+        'PASSWORD': 'bulbasaur',
+        'HOST': 'localhost',
     }
 }
 
@@ -133,8 +134,7 @@ REST_FRAMEWORK = {
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
-import django.contrib.staticfiles
-PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+# import django.contrib.staticfiles
 
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
