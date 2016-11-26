@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework', # Django REST Framework
+    'eq_map.apps.EqMapConfig', # EQ Map app
 ]
 
 MIDDLEWARE = [
@@ -72,11 +74,18 @@ WSGI_APPLICATION = 'eq_project.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
+# HEROKU DB Configuration
+# Update database configuration with $DATABASE_URL.
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'eqdata',
+        'USER': 'georob',
+        'HOST': '127.0.0.1',
     }
 }
 
