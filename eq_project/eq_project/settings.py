@@ -74,11 +74,6 @@ WSGI_APPLICATION = 'eq_project.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
-# HEROKU DB Configuration
-# Update database configuration with $DATABASE_URL.
-import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
 
 DATABASES = {
     'default': {
@@ -89,6 +84,11 @@ DATABASES = {
     }
 }
 
+# HEROKU DB Configuration
+# Update database configuration with $DATABASE_URL.
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
@@ -121,6 +121,15 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+# REST Framework configuration
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'games.pagination.LimitOffsetPaginationWithMaxLimit', 'PAGE_SIZE': 5,
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        )
+}
 
 
 # Static files (CSS, JavaScript, Images)
