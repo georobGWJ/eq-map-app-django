@@ -10,6 +10,7 @@ from eq_map.models import UserEarthquake
 from eq_map.serializers import EarthquakeSerializer
 from eq_map.serializers import LocationSerializer
 from eq_map.serializers import UserEarthquakeSerializer
+from eq_map.serializers import UserSerializer
 
 # Create your views here.
 class UserList(generics.ListAPIView):
