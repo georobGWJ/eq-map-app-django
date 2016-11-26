@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from eq_map.models import Earthquake
+from eq_map.models import Location
+from eq_map.models import UserEarthquake
 
 class EarthquakeSerializer(serializers.ModelSerializer):
     class Meta:
