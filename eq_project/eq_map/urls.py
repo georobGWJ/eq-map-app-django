@@ -26,7 +26,7 @@ urlpatterns = [
     url(r'^$',
         views.ApiRoot.as_view(),
         name=views.ApiRoot.name),
-        
+
     url(r'^users/$',
         views.UserList.as_view(),
         name=views.UserList.name),
