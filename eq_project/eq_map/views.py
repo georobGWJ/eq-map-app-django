@@ -57,9 +57,12 @@ class ApiRoot(generics.GenericAPIView):
     name = 'api-root'
 
     def get(self, request, *args, **kwargs):
-        return Response({
-            'earthquakes': reverse(EarthquakeList.name, request=request),
-            'locations': reverse(LocationList.name, request=request),
-            'user_earthquakes': reverse(UserEarthquakeList.name, request=request),
-            'users': reverse(UserList.name, request=request),
-            })
+        return Response(template_name='index.html')
+
+    # def get(self, request, *args, **kwargs):
+    #     return Response({
+    #         'earthquakes': reverse(EarthquakeList.name, request=request),
+    #         'locations': reverse(LocationList.name, request=request),
+    #         'user_earthquakes': reverse(UserEarthquakeList.name, request=request),
+    #         'users': reverse(UserList.name, request=request),
+    #         })
