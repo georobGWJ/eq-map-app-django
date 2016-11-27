@@ -60,7 +60,6 @@ class ApiRoot(generics.GenericAPIView):
     # def get(self, request, *args, **kwargs):
     #     queryset = Earthquake.objects.all()
     #     self.object = self.get_object()
-    #     renderer_classes = (TemplateHTMLRenderer,)
     #     return Response(request, template_name='index/index.html')
 
     def get(self, request, *args, **kwargs):
