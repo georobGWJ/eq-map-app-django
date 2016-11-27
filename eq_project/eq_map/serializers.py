@@ -21,7 +21,7 @@ class UserEarthquakeSerializer(serializers.ModelSerializer):
         fields = ('user_id', 'earthquake_id', 'location_id')
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
-    games = UserEarthquakeSerializer(many=True, read_only=True)
+    user_earthquakes = UserEarthquakeSerializer(many=True, read_only=True)
 
     class Meta:
         model = User
