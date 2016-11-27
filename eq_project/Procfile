@@ -1,1 +1,1 @@
-web: sh -c 'cd ./eq_project/eq_project && gunicorn django.wsgi:application' --log-file -
+web: gunicorn eq_project.eq_project.django.wsgi:application --log-file -
