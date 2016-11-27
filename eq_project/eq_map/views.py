@@ -55,14 +55,19 @@ class UserEarthquakeDetail(generics.RetrieveUpdateDestroyAPIView):
 
 class ApiRoot(generics.GenericAPIView):
     name = 'api-root'
-
-    def get(self, request, *args, **kwargs):
-        return Response(template_name='index.html')
+    renderer_classes = (TemplateHTMLRenderer,)
 
     # def get(self, request, *args, **kwargs):
-    #     return Response({
-    #         'earthquakes': reverse(EarthquakeList.name, request=request),
-    #         'locations': reverse(LocationList.name, request=request),
-    #         'user_earthquakes': reverse(UserEarthquakeList.name, request=request),
-    #         'users': reverse(UserList.name, request=request),
-    #         })
+    #     queryset = Earthquake.objects.all()
+    #     self.object = self.get_object()
+    #     renderer_classes = (TemplateHTMLRenderer,)
+    #     return Response(request, template_name='index/index.html')
+
+    def get(self, request, *args, **kwargs):
+        return Response(template_name='index/index.html')
+        # return Response({
+        #     'earthquakes': reverse(EarthquakeList.name, request=request),
+        #     'locations': reverse(LocationList.name, request=request),
+        #     'user_earthquakes': reverse(UserEarthquakeList.name, request=request),
+        #     'users': reverse(UserList.name, request=request),
+        #     })
