@@ -1,0 +1,33 @@
+{% include 'partials/_header.html' %}
+<div class="display-top"></div>
+<div class="display-main">
+  <table>
+    <tr>
+      <td>
+        <h3>Create New Dataset</h3>
+        <div>
+          <form id="create-catalog-form" action="/events" method="POST">
+             <input type="text" name="data[name]" placeholder="Dataset Name"><br>
+             <input type="text" name="data[latitude]" placeholder="Latitude"><br>
+             <input type="text" name="data[longitude]" placeholder="Longitude"><br>
+             <input type="text" name="data[radius]" placeholder="Radius (km)"><br>
+             <input type="date" name="data[starttime]" placeholder="Start Date"><br>
+             <input type="date" name="data[endtime]" placeholder="End Date"><br>
+             <input type="text" name="data[minmag]" placeholder="Minimum Magnitude"><br>
+
+             <input type="submit" name="Get Earthquakes">
+          </form>
+          <%if @errors%>
+             <span><%=@errors%>, Please Try Again</span>
+          <%end%>
+      </td>
+      <td>
+        <p></p>
+      </td>
+    </tr>
+  </table>
+  </div>
+
+
+
+</div>

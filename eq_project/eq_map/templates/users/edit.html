@@ -1,0 +1,22 @@
+{% include 'partials/_header.html' %}
+
+<h3>Account Update</h3>
+<hr>
+<% if @user %>
+  <div class="display-main">
+    <form id="register_new_user_form" action="/users/<%=@user.id%>" method="POST">
+       <input type="text" name="first_name" value=<%= @user.first_name %>><br />
+       <input type="text" name="last_name" value=<%= @user.last_name %>><br />
+       <input type="text" name="email" value=<%= @user.email %>> <br />
+       <input type="password" name="password" placeholder="Enter Password">
+       <input type="password" name="password_confirmation" placeholder="Confirm Password">
+       <input type="hidden" name="_method" value="PUT">
+       <input type="submit" name="Update Account">
+    </form>
+    <%if @errors%>
+       <span><%=@errors%><br> Please Try Again</span>
+    <%end%>
+  </div>
+<% else %>
+  <h3>No user is logged in.</h3>
+<% end %>

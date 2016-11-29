@@ -19,6 +19,7 @@ urlpatterns = [
     url(r'^user_earthquakes/$',
         views.UserEarthquakeList.as_view(),
         name=views.UserEarthquakeList.name),
+        
     url(r'^user_earthquakes/(?P<pk>[0-9]+)/$',
         views.UserEarthquakeDetail.as_view(),
         name=views.UserEarthquakeDetail.name),

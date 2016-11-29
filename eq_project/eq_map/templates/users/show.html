@@ -1,0 +1,22 @@
+{% include 'partials/_header.html' %}
+
+<div class="container">
+  <ul class="tabs">
+    <li><a href="/user_events"><strong>Data Management</strong></a></li>
+    <li><a href="/events"><strong>Earthquake Map</strong></a></li>
+    <li><a href="/data_viz"><strong>Earthquake Visualization</strong></a></li>
+    <li class="active"><a href="/users/<%= session[:id] %>"><strong>Account Data</strong></a></li>
+  </ul>
+</div>
+
+<div class="display-top"></div>
+<div class="display-main">
+  <h2>Account Details</h2>
+  <h3>First Name: <%= @user.first_name %> </h3>
+  <h3>Last Name: <%= @user.last_name %> </h3>
+  <h3>E-Mail: <%= @user.email %> </h3>
+  <hr>
+  <form class="edit-users" action="/users/<%= @user.id %>/edit" method="GET">
+    <input type="submit" class="input submit" value="Update Account Information">
+  </form>
+</div>
