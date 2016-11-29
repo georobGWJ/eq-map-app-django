@@ -2,9 +2,23 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Landing</title>
+    <title>Earthquakes Unleashed</title>
+
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'css/application.css' %}">
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="{% static 'js/application.js' %}"></script>
   </head>
   <body>
-    <h1>Welcome home friend!</h1>
+    {% include 'partials/_header.html' %}
+
+    <div class="main-container">
+      <h1>Welcome home friend!</h1>
+    </div>
+
+    {% include 'partials/_footer.html' %}
   </body>
 </html>
