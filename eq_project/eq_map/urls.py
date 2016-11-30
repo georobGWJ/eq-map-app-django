@@ -1,10 +1,12 @@
 from django.conf.urls import url
 from eq_map import views
 
+app_name = 'eq_map'
 urlpatterns = [
     url(r'^earthquakes/$',
         views.EarthquakeList.as_view(),
         name=views.EarthquakeList.name),
+
     url(r'^earthquakes/(?P<pk>[0-9]+)/$',
         views.EarthquakeDetail.as_view(),
         name=views.EarthquakeDetail.name),
@@ -12,6 +14,7 @@ urlpatterns = [
     url(r'^locations/$',
         views.LocationList.as_view(),
         name=views.LocationList.name),
+
     url(r'^locations/(?P<pk>[0-9]+)/$',
         views.LocationDetail.as_view(),
         name=views.LocationDetail.name),
@@ -19,7 +22,15 @@ urlpatterns = [
     url(r'^user_earthquakes/$',
         views.UserEarthquakeList.as_view(),
         name=views.UserEarthquakeList.name),
-        
+
+    # RT ADDED:
+    # url(r'^$',
+    #     views.UserEarthquakeNew,
+    #     name='user-earthquake-new'),
+    url(r'^user_earthquakes/new/$',
+        views.UserEarthquakeNew.as_view(),
+        name=views.UserEarthquakeNew.name),
+
     url(r'^user_earthquakes/(?P<pk>[0-9]+)/$',
         views.UserEarthquakeDetail.as_view(),
         name=views.UserEarthquakeDetail.name),
@@ -31,6 +42,7 @@ urlpatterns = [
     url(r'^users/$',
         views.UserList.as_view(),
         name=views.UserList.name),
+
     url(r'^users/(?P<pk>[0-9]+)/$',
         views.UserDetail.as_view(),
         name=views.UserDetail.name),

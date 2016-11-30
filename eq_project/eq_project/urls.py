@@ -18,9 +18,12 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from eq_map import views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^login/$', auth_views.login, {'template_name':'registration/login.html'}, name='login'),
+    url(r'^logout/$', auth_views.logout, {'template_name':'/'}, name='logout'),
     url(r'^', include('eq_map.urls')),
     url(r'^api-auth/', include('rest_framework.urls'))
 ] #+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

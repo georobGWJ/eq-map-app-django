@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Earthquakes Unleashed</title>
+
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'css/application.css' %}">
+    <link rel="stylesheet" href="{% static 'css/tab-styling.css' %}">
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="{% static 'js/application.js' %}"></script>
+  </head>
+
+  <body>
+  {% block header %}
+    <div id="header">
+      <table id="header-table">
+        <tr>
+          <td id="header-left">
+            <h3>Earthquake Map App Unleashed</h3>
+          </td>
+
+          <td id="header-right">
+            {% if user.is_authenticated %}
+              <strong>Welcome {{ user.username }}!</strong><br>
+            {% else %}
+            <br>
+            {% endif %}
+              <form class="header-form" method='GET' action='/'>
+                <button class="header-button" type="submit">HOME</button>
+              </form>
+            {% if user.is_authenticated %}
+              <form class="header-form" method='GET' action="/users/<%=user_logged_in.id%>">
+                <button class="header-button" type="submit">ACCOUNT</button>
+              </form>
+              <form class="header-form" method='post' action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button class="header-button" type="submit">LOGOUT</button>
+              </form>
+
+            {% else %}
+              <form class="header-form" method='GET' action='/users/new'>
+                <button class="header-button" type="submit">REGISTER</button>
+              </form>
+              <form class="header-form" method='GET' action="{% url 'login' %}">
+                <button class="header-button" type="submit">LOGIN</button>
+              </form>
+            {% endif %}
+          </td>
+        </tr>
+      </table>
+
+      <ul class="tabs">
+        <li><a id="data-tab" href="user_earthquakes/new">Data Management</a></li>
+        <li><a id="map-tab" href="earthquakes/">Earthquake Map</a></li>
+        <li><a id="viz-tab">Earthquake Visualization</a></li>
+        <li><a id="user-tab">Account Data</a></li>
+      </ul>
+    </div>
+  {% endblock %}
+
+    <div id="main-container">
+      {% block content %}
+      {% endblock %}
+    </div>
+
+    {% block footer %}
+      <div id="footer">
+        <img src="{% static 'img/django_logo.jpg' %}" width=50px>
+      </div>
+    {% endblock %}
+  </body>
+</html>

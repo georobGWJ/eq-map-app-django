@@ -1,18 +1,62 @@
 body {
-  background-color: gray;
+  background-image: url("../img/carrizo_plains.png");
 }
 
-.header {
-  padding: 1rem;
-  background-color: #efefef;
+#header {
+  padding: 1px;
+  background-color: #d6d3cb;
 }
 
-.footer {
+#footer {
   position: absolute;
   right: 0;
   bottom: 0;
   left: 0;
   padding: 5px;
-  background-color: #efefef;
+  background-color: #d6d3cb;
   text-align: center;
+}
+
+#header-table {
+  border-radius: 15px 50px 30px;
+  border: 2px solid black;
+  width: 90%;
+  margin: auto;
+}
+
+#header-left {
+  width: 70%;
+  padding: 5px;
+}
+
+#header-right {
+  width:30%;
+  padding: 5px;
+}
+
+.header-form {
+  display: inline;
+}
+
+.header-button {
+  color: white;
+  border-radius: 6px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  background: #7a7566;
+}
+
+#catalog-form {
+  border: 1px solid black;
+  width: 30%
+}
+
+#catalog-map {
+  border: 1px solid black;
+  width: 60%
+}
+
+#main-container {
+  padding: 15px;
+  margin: auto;
+  width: 90%;
 }

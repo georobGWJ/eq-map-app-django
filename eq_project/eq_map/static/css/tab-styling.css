@@ -15,6 +15,7 @@
     padding: 10px 15px;
     height: 30px;
     line-height: 30px;
+    width: 18%;
 }
 .tabs li a {
     color: black;
@@ -23,7 +24,7 @@
 }
 
 .tabs li a:hover {
-    font-size: 18px;
+    font-weight: bold;
 }
 
 /*

@@ -1,42 +1,48 @@
-<div class="header">
-  {% load static %}
-  <link rel="stylesheet" href="{% static 'css/tab-styling.css' %}">
-  {% if True %}
+
+{% load static %}
+{% load rest_framework %}
+<link rel="stylesheet" href="{% static 'css/tab-styling.css' %}">
+<link rel="stylesheet" href="{% static 'css/application.css' %}">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<div id="header">
   <table id="header-table">
     <tr>
       <td id="header-left">
-        <h2>Earthquake Map App</h2>
+        <h3>Earthquake Map App Unleashed</h3>
       </td>
+
       <td id="header-right">
-        <a class="home-page" href="/">HOME</a><br>
-        <span>Welcome <%= current_user.first_name %></span><br>
-        <span><%= current_user.email %></span>
-        <form id="logout_user_form" action="/sessions/logout" method="POST">
-           <input type="hidden" name="_method" value="DELETE">
-           <input type="submit" value="Logout">
-        </form>
+        {% if user.is_authenicated %}
+          <h4>Welcome {{ user.username }}!</h4>
+        {% endif %}
+          <form class="header-form" method='GET' action='/'>
+            <button class="header-button" type="submit">HOME</button>
+          </form>
+        {% if user.is_authenicated %}
+          <form class="header-form" method='GET' action="/users/<%=user_logged_in.id%>">
+            <button class="header-button" type="submit">ACCOUNT</button>
+          </form>
+          <form class="header-form" method='post' action='/sessions/logout'>
+            <input type = 'hidden' name='_method' value='delete'>
+            <button class="header-button" type="submit">LOGOUT</button>
+          </form>
+
+        {% else %}
+          <form class="header-form" method='GET' action='/users/new'>
+            <button class="header-button" type="submit">REGISTER</button>
+          </form>
+          <form class="header-form" method='GET' action="{% url 'login' %}">
+            <button class="header-button" type="submit">LOGIN</button>
+          </form>
+        {% endif %}
       </td>
     </tr>
   </table>
-{% else %}
-  <table id="header-table">
-    <tr>
-      <td id="header-left">
-        <h2>Dynamic Earthquake Mapper</h2>
-      </td>
-      <td id="header-right">
-        <a class="home-page" href="/">HOME</a><br>
-        <a class="register_link" href="/users/new">REGISTER</a><br>
-        <a class="login_link" href="/sessions/login">LOG IN</a>
-      </td>
-    </tr>
-  </table>
-{% endif %}
 
   <ul class="tabs">
-    <li><a href="/user_events">Data Management</a></li>
-    <li><a href="/events">Earthquake Map</a></li>
-    <li class="active"><a href="/data_viz">Earthquake Visualization</a></li>
-    <li><a href="/users/<%= session[:id] %>">Account Data</a></li>
+    <li><a id="data-tab" href="user_earthquakes/new.html">Data Management</a></li>
+    <li><a id="map-tab">Earthquake Map</a></li>
+    <li><a id="viz-tab">Earthquake Visualization</a></li>
+    <li><a id="user-tab">Account Data</a></li>
   </ul>
 </div>

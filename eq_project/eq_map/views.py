@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework.response import Response
@@ -26,7 +27,11 @@ class UserDetail(generics.RetrieveAPIView):
 class EarthquakeList(generics.ListCreateAPIView):
     queryset = Earthquake.objects.all()
     serializer_class = EarthquakeSerializer
+    renderer_classes = (TemplateHTMLRenderer,)
     name = 'earthquake-list'
+
+    # def get(self, request):
+    #     return render(template_name='earthquakes/index.html')
 
 class EarthquakeDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Earthquake.objects.all()
@@ -46,7 +51,12 @@ class LocationDetail(generics.RetrieveUpdateDestroyAPIView):
 class UserEarthquakeList(generics.ListCreateAPIView):
     queryset = UserEarthquake.objects.all()
     serializer_class = UserEarthquakeSerializer
+    renderer_classes = (TemplateHTMLRenderer,)
     name = 'user_earthquake-list'
+
+    # def get(self, request):
+    #     template='earthquakes/index.html'
+    #     return Response(request, template)
 
 class UserEarthquakeDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = UserEarthquake.objects.all()
@@ -63,10 +73,24 @@ class ApiRoot(generics.GenericAPIView):
     #     return Response(request, template_name='index/index.html')
 
     def get(self, request, *args, **kwargs):
-        return Response(template_name='index/index.html')
+        return Response(template_name='base.html')
         # return Response({
         #     'earthquakes': reverse(EarthquakeList.name, request=request),
         #     'locations': reverse(LocationList.name, request=request),
         #     'user_earthquakes': reverse(UserEarthquakeList.name, request=request),
         #     'users': reverse(UserList.name, request=request),
         #     })
+
+# RT ADDED:
+class UserEarthquakeNew(generics.GenericAPIView):
+    name = 'user-earthquake-new'
+    renderer_classes = (TemplateHTMLRenderer,)
+
+    def get(self, request):
+        return render(request, template_name='user_earthquakes/new.html')
+
+# def UserEarthquakeNew(request):
+#     template='user_earthquakes/new.html'
+#     # return Response(template_name=template)
+#     renderer_classes = (TemplateHTMLRenderer,)
+#     return render(template_name=template)
