@@ -14,83 +14,55 @@ from eq_map.serializers import UserEarthquakeSerializer
 from eq_map.serializers import UserSerializer
 
 # Create your views here.
-class UserList(generics.ListAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-    name = 'user-list'
 
-class UserDetail(generics.RetrieveAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-    name = 'user-detail'
 
-class EarthquakeList(generics.ListCreateAPIView):
+class ApiEarthquakeList(generics.ListCreateAPIView):
     queryset = Earthquake.objects.all()
     serializer_class = EarthquakeSerializer
-    renderer_classes = (TemplateHTMLRenderer,)
-    name = 'earthquake-list'
+    name = 'api-earthquake-list'
 
-    # def get(self, request):
-    #     return render(template_name='earthquakes/index.html')
-
-class EarthquakeDetail(generics.RetrieveUpdateDestroyAPIView):
+class ApiEarthquakeDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Earthquake.objects.all()
     serializer_class = EarthquakeSerializer
-    name = 'earthquake-detail'
+    name = 'api-earthquake-detail'
 
-class LocationList(generics.ListCreateAPIView):
+class ApiLocationList(generics.ListCreateAPIView):
     queryset = Location.objects.all()
     serializer_class = LocationSerializer
-    name = 'location-list'
+    name = 'api-location-list'
 
-class LocationDetail(generics.RetrieveUpdateDestroyAPIView):
+class ApiLocationDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Location.objects.all()
     serializer_class = LocationSerializer
-    name = 'location-detail'
+    name = 'api-location-detail'
 
-class UserEarthquakeList(generics.ListCreateAPIView):
+class ApiUserEarthquakeList(generics.ListCreateAPIView):
     queryset = UserEarthquake.objects.all()
     serializer_class = UserEarthquakeSerializer
-    renderer_classes = (TemplateHTMLRenderer,)
-    name = 'user_earthquake-list'
+    name = 'api-user_earthquake-list'
 
-    # def get(self, request):
-    #     template='earthquakes/index.html'
-    #     return Response(request, template)
-
-class UserEarthquakeDetail(generics.RetrieveUpdateDestroyAPIView):
+class ApiUserEarthquakeDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = UserEarthquake.objects.all()
     serializer_class = UserEarthquakeSerializer
-    name = 'user_earthquake-detail'
+    name = 'api-user_earthquake-detail'
+
+class ApiUserList(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    name = 'api-user-list'
+
+class ApiUserDetail(generics.RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    name = 'api-user-detail'
 
 class ApiRoot(generics.GenericAPIView):
     name = 'api-root'
-    renderer_classes = (TemplateHTMLRenderer,)
-
-    # def get(self, request, *args, **kwargs):
-    #     queryset = Earthquake.objects.all()
-    #     self.object = self.get_object()
-    #     return Response(request, template_name='index/index.html')
 
     def get(self, request, *args, **kwargs):
-        return Response(template_name='base.html')
-        # return Response({
-        #     'earthquakes': reverse(EarthquakeList.name, request=request),
-        #     'locations': reverse(LocationList.name, request=request),
-        #     'user_earthquakes': reverse(UserEarthquakeList.name, request=request),
-        #     'users': reverse(UserList.name, request=request),
-        #     })
-
-# RT ADDED:
-class UserEarthquakeNew(generics.GenericAPIView):
-    name = 'user-earthquake-new'
-    renderer_classes = (TemplateHTMLRenderer,)
-
-    def get(self, request):
-        return render(request, template_name='user_earthquakes/new.html')
-
-# def UserEarthquakeNew(request):
-#     template='user_earthquakes/new.html'
-#     # return Response(template_name=template)
-#     renderer_classes = (TemplateHTMLRenderer,)
-#     return render(template_name=template)
+        return Response({
+            'earthquakes': reverse(ApiEarthquakeList.name, request=request),
+            'locations': reverse(ApiLocationList.name, request=request),
+            'user_earthquakes': reverse(ApiUserEarthquakeList.name, request=request),
+            'users': reverse(ApiUserList.name, request=request)
+            })

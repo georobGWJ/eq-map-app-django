@@ -1,49 +1,40 @@
 from django.conf.urls import url
 from eq_map import views
 
-app_name = 'eq_map'
 urlpatterns = [
-    url(r'^earthquakes/$',
-        views.EarthquakeList.as_view(),
-        name=views.EarthquakeList.name),
+    url(r'^api/earthquakes/',
+        views.ApiEarthquakeList.as_view(),
+        name=views.ApiEarthquakeList.name),
 
-    url(r'^earthquakes/(?P<pk>[0-9]+)/$',
-        views.EarthquakeDetail.as_view(),
-        name=views.EarthquakeDetail.name),
+    url(r'^api/earthquakes/(?P<pk>[0-9]+)/',
+        views.ApiEarthquakeDetail.as_view(),
+        name=views.ApiEarthquakeDetail.name),
 
-    url(r'^locations/$',
-        views.LocationList.as_view(),
-        name=views.LocationList.name),
+    url(r'^api/locations/$',
+        views.ApiLocationList.as_view(),
+        name=views.ApiLocationList.name),
 
-    url(r'^locations/(?P<pk>[0-9]+)/$',
-        views.LocationDetail.as_view(),
-        name=views.LocationDetail.name),
+    url(r'^api/locations/(?P<pk>[0-9]+)/$',
+        views.ApiLocationDetail.as_view(),
+        name=views.ApiLocationDetail.name),
 
-    url(r'^user_earthquakes/$',
-        views.UserEarthquakeList.as_view(),
-        name=views.UserEarthquakeList.name),
+    url(r'^api/user_earthquakes/$',
+        views.ApiUserEarthquakeList.as_view(),
+        name=views.ApiUserEarthquakeList.name),
 
-    # RT ADDED:
-    # url(r'^$',
-    #     views.UserEarthquakeNew,
-    #     name='user-earthquake-new'),
-    url(r'^user_earthquakes/new/$',
-        views.UserEarthquakeNew.as_view(),
-        name=views.UserEarthquakeNew.name),
+    url(r'^api/user_earthquakes/(?P<pk>[0-9]+)/$',
+        views.ApiUserEarthquakeDetail.as_view(),
+        name=views.ApiUserEarthquakeDetail.name),
 
-    url(r'^user_earthquakes/(?P<pk>[0-9]+)/$',
-        views.UserEarthquakeDetail.as_view(),
-        name=views.UserEarthquakeDetail.name),
+    url(r'^api/users/$',
+        views.ApiUserList.as_view(),
+        name=views.ApiUserList.name),
 
-    url(r'^$',
+    url(r'^api/users/(?P<pk>[0-9]+)/$',
+        views.ApiUserDetail.as_view(),
+        name=views.ApiUserDetail.name),
+
+    url(r'^api/$',
         views.ApiRoot.as_view(),
         name=views.ApiRoot.name),
-
-    url(r'^users/$',
-        views.UserList.as_view(),
-        name=views.UserList.name),
-
-    url(r'^users/(?P<pk>[0-9]+)/$',
-        views.UserDetail.as_view(),
-        name=views.UserDetail.name),
 ]
