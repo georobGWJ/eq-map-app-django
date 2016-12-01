@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 from rest_framework import generics
 from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework.response import Response
@@ -12,6 +12,7 @@ from eq_map.serializers import EarthquakeSerializer
 from eq_map.serializers import LocationSerializer
 from eq_map.serializers import UserEarthquakeSerializer
 from eq_map.serializers import UserSerializer
+
 
 
 # =================== API VIEWS ===================
@@ -79,12 +80,13 @@ def get_base(request):
 def get_data_tab(request):
     return render(request, template_name='user_earthquakes/new.html')
 
-
+# Get Earthquake Map tab
 def get_earthquake_tab(request):
     return render(request, template_name='earthquakes/index.html')
 
-
+# Get EQ Visualization tab
 def get_viz_tab(request):
+    # context = {'API_KEY': API_KEY}
     return render(request, template_name='user_earthquakes/index.html')
 
 

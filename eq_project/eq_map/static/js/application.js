@@ -1,6 +1,7 @@
 $(document).ready(function() {
   console.log("Loaded!");
   tabActivator();
+  initMap();
   // dataTabListener();
   // mapTabListener();
   // vizTabListener();
@@ -21,3 +22,16 @@ var dataTabListener = function(){
     $("#main-container").html()
   })
 };
+
+var map;
+
+// function initMap() {
+var initMap = function() {
+  centerCoords = new google.maps.LatLng(38.01324,-98.64066)
+
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: centerCoords,
+    zoom: 4,
+    mapTypeId: 'terrain'
+  });
+}

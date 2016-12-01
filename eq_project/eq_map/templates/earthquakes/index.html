@@ -1,15 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <br>
-  <h1>3-D Earthquakes here!</h1>
-  <br>
-  <div class="map-display" id="map">
-    <% api_key = ENV['GOOGLE_EARTH_KEY'] %>
-    <!-- <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=<%="#{api_key}"%>&callback=initMap"></script> -->
-    <strong>A Map will be here!</strong>
+  <!-- <script type="text/javascript">$('#map-tab').addClass('active')</script> -->
 
-    <hr>
+  <br>
+  <h1>Earthquake Map Here!</h1>
+  <br>
+
+  <div class="map-display" id="map">
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key={{API_KEY}}&callback=initMap"></script>
   </div>
 {% endblock %}
