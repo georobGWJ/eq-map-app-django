@@ -1,5 +1,8 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render, render_to_response
+from django.http import HttpResponse
+from django.template import loader
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework import generics
 from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework.response import Response
@@ -86,12 +89,23 @@ def get_earthquake_tab(request):
 
 # Get EQ Visualization tab
 def get_viz_tab(request):
-    # context = {'API_KEY': API_KEY}
     return render(request, template_name='user_earthquakes/index.html')
 
+# Post EQ Catalog form data
+@csrf_exempt
+def create_catalog(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        lat = request.POST.get('lat')
+        longi = request.POST.get('long')
+        radius = request.POST.get('radius')
+        starttime = request.POST.get('starttime')
+        endtime = request.POST.get('endtime')
+        minmag = request.POST.get('minmag')
 
-# def get_account_tab(request):
-#     return render(request, template_name='users/show.html')
+
+    return
+    # return render(request, template_name='users/show.html')
 
 
 # def get_data(request):
