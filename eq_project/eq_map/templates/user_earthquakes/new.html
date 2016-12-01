@@ -9,8 +9,8 @@
           <div>
             <form id="create-catalog-form" action="/events" method="POST">
               <input type="text" name="data[name]" placeholder="Dataset Name"><br>
-              <input type="text" name="data[latitude]" placeholder="Latitude"><br>
-              <input type="text" name="data[longitude]" placeholder="Longitude"><br>
+              <input type="text" id="lat-field" name="data[latitude]" placeholder="Latitude"><br>
+              <input type="text" id="long-field" name="data[longitude]" placeholder="Longitude"><br>
               <input type="text" name="data[radius]" placeholder="Radius (km)"><br>
               <input type="date" name="data[starttime]" placeholder="Start Date"><br>
               <input type="date" name="data[endtime]" placeholder="End Date"><br>
@@ -18,7 +18,17 @@
               <input type="submit" name="Get Earthquakes">
             </form>
         </td>
-        <td id="catalog-map">
+        <td style="width:800px;">
+          <div class="map-display" id="map">
+            <script async defer
+              src="https://maps.googleapis.com/maps/api/js?key={{API_KEY}}&callback=initMap">
+            </script>
+            <!-- <script type="text/javascript">
+              google.maps.event.addListener(map, 'click', function( event ){
+                alert( "Latitude: "+event.latLng.lat()+" "+", longitude: "+event.latLng.lng() );
+              });
+            </script> -->
+          </div>
         </td>
       </tr>
     </table>

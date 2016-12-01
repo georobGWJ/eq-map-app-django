@@ -2,10 +2,15 @@ $(document).ready(function() {
   console.log("Loaded!");
   tabActivator();
   initMap();
+  mapListener;
   // dataTabListener();
   // mapTabListener();
   // vizTabListener();
   // userTabListener();
+  google.maps.event.addListener(map, 'click', function( event ){
+    alert( "Latitude: "+event.latLng.lat()+" "+", longitude: "+event.latLng.lng() );
+  });
+
 });
 
 var tabActivator = function() {
@@ -34,4 +39,16 @@ var initMap = function() {
     zoom: 4,
     mapTypeId: 'terrain'
   });
+
+    google.maps.event.addListener(map, 'click', function( event ){
+      document.getElementById("lat-field").value = event.latLng.lat();
+      document.getElementById("long-field").value = event.latLng.lng();
+
+      // alert( "Latitude: "+event.latLng.lat()+" "+", longitude: "+event.latLng.lng() );
+    });
 }
+
+
+google.maps.event.addListener(map, 'click', function( event ){
+  alert( "Latitude: "+event.latLng.lat()+" "+", longitude: "+event.latLng.lng() );
+});
