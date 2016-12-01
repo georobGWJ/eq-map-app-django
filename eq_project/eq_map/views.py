@@ -13,8 +13,9 @@ from eq_map.serializers import LocationSerializer
 from eq_map.serializers import UserEarthquakeSerializer
 from eq_map.serializers import UserSerializer
 
-# Create your views here.
 
+# =================== API VIEWS ===================
+# =================================================
 
 class ApiEarthquakeList(generics.ListCreateAPIView):
     queryset = Earthquake.objects.all()
@@ -66,3 +67,42 @@ class ApiRoot(generics.GenericAPIView):
             'user_earthquakes': reverse(ApiUserEarthquakeList.name, request=request),
             'users': reverse(ApiUserList.name, request=request)
             })
+
+# =================== HTML VIEWS ====================
+# ===================================================
+
+# Get main index page
+def get_base(request):
+    return render(request, template_name='base.html')
+
+# Get Data Management tab
+def get_data_tab(request):
+    return render(request, template_name='user_earthquakes/new.html')
+
+
+def get_earthquake_tab(request):
+    return render(request, template_name='earthquakes/index.html')
+
+
+def get_viz_tab(request):
+    return render(request, template_name='user_earthquakes/index.html')
+
+
+# def get_account_tab(request):
+#     return render(request, template_name='users/show.html')
+
+
+# def get_data(request):
+#     return render(request, template_name='')
+#
+#
+# def get_data(request):
+#     return render(request, template_name='')
+#
+#
+# def get_data(request):
+#     return render(request, template_name='')
+#
+#
+# def get_data(request):
+#     return render(request, template_name='')

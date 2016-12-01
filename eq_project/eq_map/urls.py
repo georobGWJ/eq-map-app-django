@@ -2,6 +2,8 @@ from django.conf.urls import url
 from eq_map import views
 
 urlpatterns = [
+    # =================== API ROUTES ===================
+    # ==================================================
     url(r'^api/earthquakes/',
         views.ApiEarthquakeList.as_view(),
         name=views.ApiEarthquakeList.name),
@@ -37,4 +39,27 @@ urlpatterns = [
     url(r'^api/$',
         views.ApiRoot.as_view(),
         name=views.ApiRoot.name),
+
+    # =================== HTML ROUTES ===================
+    # ===================================================
+
+    url(r'^$', views.get_base, name='base'),
+
+    url(r'^earthquakes/$', views.get_earthquake_tab, name='map_tab'),
+
+    url(r'^user_earthquakes/$', views.get_viz_tab, name='viz_tab'),
+
+    url(r'^user_earthquakes/new/$', views.get_data_tab, name='data_tab'),
+
+    # url(r'^users/(?P<pk>[0-9]+)/$', views.get_account_tab, name='account_tab'),
+
+    # url(r'^$', views.get_data_tab, name='data_tab'),
+    #
+    # url(r'^$', views.get_data_tab, name='data_tab'),
+    #
+    # url(r'^$', views.get_data_tab, name='data_tab'),
+
+
+
+
 ]

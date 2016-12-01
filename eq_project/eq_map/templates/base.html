@@ -52,15 +52,11 @@
           </td>
         </tr>
       </table>
-
-      <ul class="tabs">
-        <li><a id="data-tab" href="user_earthquakes/new">Data Management</a></li>
-        <li><a id="map-tab" href="earthquakes/">Earthquake Map</a></li>
-        <li><a id="viz-tab">Earthquake Visualization</a></li>
-        <li><a id="user-tab">Account Data</a></li>
-      </ul>
     </div>
   {% endblock %}
+
+  {% include 'partials/_tabs.html' %}
+
 
     <div id="main-container">
       {% block content %}
