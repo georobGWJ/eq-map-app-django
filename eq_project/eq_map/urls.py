@@ -51,7 +51,7 @@ urlpatterns = [
 
     url(r'^user_earthquakes/new/$', views.get_data_tab, name='data_tab'),
 
-    url(r'^user_earthquakes/new/$', views.create_catalog, name='create_catalog'),
+    url(r'^user_earthquakes/post/$', views.create_catalog, name='create_catalog'),
 
     # url(r'^$', views.get_data_tab, name='data_tab'),
     #

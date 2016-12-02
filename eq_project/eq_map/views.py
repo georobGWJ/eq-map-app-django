@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
-from django.shortcuts import render, render_to_response
+from django.contrib.auth import get_user
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import loader
 from django.views.decorators.csrf import csrf_exempt
@@ -85,7 +86,9 @@ def get_data_tab(request):
 
 # Get Earthquake Map tab
 def get_earthquake_tab(request):
-    return render(request, template_name='earthquakes/index.html')
+    queryset = Location.objects.order_by('-created_at')
+    context = {'locations': queryset}
+    return render(request=request, context=context, template_name='earthquakes/index.html')
 
 # Get EQ Visualization tab
 def get_viz_tab(request):
@@ -94,17 +97,18 @@ def get_viz_tab(request):
 # Post EQ Catalog form data
 @csrf_exempt
 def create_catalog(request):
+    user = get_user(request)
     if request.method == 'POST':
         name = request.POST.get('name')
-        lat = request.POST.get('lat')
-        longi = request.POST.get('long')
+        lati = request.POST.get('lati')
+        longi = request.POST.get('longi')
         radius = request.POST.get('radius')
         starttime = request.POST.get('starttime')
         endtime = request.POST.get('endtime')
         minmag = request.POST.get('minmag')
 
-
-    return
+    UserEarthquake.make(name, lati, longi, minmag, radius, starttime, endtime, user)
+    return redirect('map_tab')
     # return render(request, template_name='users/show.html')
 
 

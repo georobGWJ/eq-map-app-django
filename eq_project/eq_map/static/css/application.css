@@ -45,6 +45,14 @@ body {
   background: #7a7566;
 }
 
+.loc-button {
+  color: white;
+  border-radius: 6px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  background: #7a7566;
+  margin-bottom: 15px;
+}
+
 #catalog-form {
   border: 1px solid black;
   width: 30%

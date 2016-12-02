@@ -2,13 +2,21 @@
 
 {% block content %}
   <!-- <script type="text/javascript">$('#map-tab').addClass('active')</script> -->
-
-  <br>
-  <h1>Earthquake Map Here!</h1>
-  <br>
-
-  <div class="map-display" id="map">
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key={{API_KEY}}&callback=initMap"></script>
-  </div>
+<table>
+  <tr>
+    <td>
+      <div class="map-display" id="map" style="width:900px; margin:5px; border: 2px solid black;">
+        <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key={{API_KEY}}&callback=initMap"></script>
+      </div>
+    </td>
+    <td>
+      {% for location in locations %}
+      <form class="" action="index.html" method="get">
+        <button class="loc-button" type="submit" name="button">{{ location.name }}</button>
+      </form>
+      {% endfor %}
+    </td>
+  </tr>
+</table>
 {% endblock %}

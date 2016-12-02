@@ -7,7 +7,7 @@
         <td id="catalog-form">
           <h3>Create New Dataset</h3>
           <div>
-            <form id="create-catalog-form" action="user_earthquakes/new/" method="POST">
+            <form id="create-catalog-form" action="{%url 'create_catalog' %}" method="POST">
               <input type="text" name="name" placeholder="Dataset Name"><br>
               <input type="text" id="lat-field" name="lati" placeholder="Latitude"><br>
               <input type="text" id="long-field" name="longi" placeholder="Longitude"><br>
@@ -23,11 +23,7 @@
             <script async defer
               src="https://maps.googleapis.com/maps/api/js?key={{API_KEY}}&callback=initMap">
             </script>
-            <!-- <script type="text/javascript">
-              google.maps.event.addListener(map, 'click', function( event ){
-                alert( "Latitude: "+event.latLng.lat()+" "+", longitude: "+event.latLng.lng() );
-              });
-            </script> -->
+
           </div>
         </td>
       </tr>
