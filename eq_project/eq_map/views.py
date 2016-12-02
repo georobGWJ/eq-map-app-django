@@ -88,21 +88,10 @@ def get_base(request):
 def get_data_tab(request):
     return render(request, template_name='user_earthquakes/new.html')
 
-# Get Earthquake Map tab
-# def articles(request, format=None):
-#     data= {'articles': Article.objects.all() }
-#     return Response(data, template_name='articles.html')
 def get_earthquake_tab(request):
     locations = Location.objects.order_by('-created_at')
     return render(request=request, context={'locations': locations}, template_name='earthquakes/index.html')
     # return render(request=request, context=context,  template_name='earthquakes/index.html')
-
-# Get Earthquake Map tab
-# def get_catalog_tab(request, pk):
-#     locations = Location.objects.order_by('-created_at')
-#     context = {'earthquakes': eqs}
-#
-#     return render(request=request, context=context, template_name='earthquakes/index.html')
 
 # Get ALL EQ Data
 @api_view(['GET', 'POST'])
@@ -117,14 +106,14 @@ def get_all_eqs(request):
 # Get Single Location EQ Data
 def get_catalog_eqs(request, pk):
     earthquakes = Earthquake.objects.filter(location_id=pk)
-
     response = list(earthquakes.values('usgs_id', 'eq_lat', 'eq_long', 'depth', 'mag',  'location_id'))
-
     return HttpResponse(json.dumps(response), content_type="application/json")
 
 # Get EQ Visualization tab
 def get_viz_tab(request):
-    return render(request, template_name='user_earthquakes/index.html')
+    locations = Location.objects.all()
+    context = {'locations': locations}
+    return render(request=request, context=context, template_name='user_earthquakes/index.html')
 
 # Post EQ Catalog form data
 @csrf_exempt
@@ -141,22 +130,11 @@ def create_catalog(request):
 
     UserEarthquake.make(name, lati, longi, minmag, radius, starttime, endtime, user)
     return redirect('map_tab')
-    # return render(request, template_name='users/show.html')
 
-
-# def show_catalog(request):
-#     location = request.POST.get('location')
-#     user_earthquakes = UserEarthquake.objects.filter(earthquake_id:location) Earthquake.objects.filter(earthquake_id:location)
-# #     return render(request, template_name='')
+@csrf_exempt
+def get_catalog_data(request):
+    pk = request.POST.get('catalog_id')
+    earthquakes = Earthquake.objects.filter(location_id=pk).order_by('-mag')
+    context = {'earthquakes': earthquakes}
+    return render(request=request, context=context, template_name='user_earthquakes/show.html')
 #
-#
-# def get_data(request):
-#     return render(request, template_name='')
-#
-#
-# def get_data(request):
-#     return render(request, template_name='')
-#
-#
-# def get_data(request):
-#     return render(request, template_name='')

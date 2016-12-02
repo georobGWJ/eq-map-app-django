@@ -1,5 +1,6 @@
 body {
   background-image: url("../img/carrizo_plains.png");
+  font-family: Verdana, Geneva, sans-serif;
 }
 
 #header {
@@ -59,20 +60,39 @@ body {
   vertical-align: top
 }
 
-#catalog-map {
-  border: 1px solid black;
-  width: 65%
-}
-
 #main-container {
   padding: 15px;
   margin: auto;
   width: 90%;
 }
 
+#catalog-map {
+  border: 1px solid black;
+  width: 65%
+}
 
 #map {
   margin:auto;
   height: 500px;
   width: 80%;
+}
+
+.earthquake-data-table {
+  background-color: #d6d3cb;
+  opacity: 0.8;
+  border-radius: 15px 50px 30px;
+  border: 2px solid black;
+  width: 90%;
+  margin: auto;
+}
+
+.earthquake-data-table td {
+  padding-top: 5px;
+  padding-bottom; 5px;
+  padding-left: 40px;
+}
+
+.earthquake-data-table th {
+  padding: 5px;
+  font-size: 1.15em;
 }

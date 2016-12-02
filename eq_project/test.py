@@ -1,6 +1,7 @@
 import numpy as np
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
+import mpld3
 
 
 def randrange(n, vmin, vmax):
@@ -20,3 +21,4 @@ ax.set_ylabel('Y Label')
 ax.set_zlabel('Z Label')
 
 plt.show()
+#print(mpld3.fig_to_html(plt))

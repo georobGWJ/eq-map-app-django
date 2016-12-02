@@ -1,7 +1,18 @@
 {% extends "base.html" %}
 
+{% include 'partials/_header.html' %}
+
 {% block content %}
   <br>
-  <h1>3-D Earthquakes Here!</h1>
-  <br>
+  <h2>Select a Catalog to View</h2>
+
+
+  <form id="catalog-selector" action="{% url 'get_catalog_data' %}" method="POST">
+    <select name="catalog_id" form="catalog-selector">
+      {% for location in locations %}
+        <option value="{{ location.id }}">{{ location.name }}</option>
+      {% endfor %}
+    </select><br><br>
+    <button type="submit" class="loc-button" name="button">Get Data</button>
+  </form>
 {% endblock %}

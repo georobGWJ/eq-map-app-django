@@ -1,3 +1,30 @@
+{% extends "base.html" %}
+
 {% include 'partials/_header.html' %}
 
-<h2>You're at /user_earthquakes/show</h2>
+{% block content %}
+  <br>
+    <h2 style="text-align:center">Earthquake Data</h2>
+
+    <table class="earthquake-data-table">
+      <tr>
+        <th>Date</th>
+        <th>Magnitude</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+        <th>Depth</th>
+        <th>USGS Link</th>
+      </tr>
+      {% for earthquake in earthquakes %}
+        <tr>
+          <td>{{ earthquake.eq_date }}</td>
+          <td><strong>{{ earthquake.mag }}</strong></td>
+          <td>{{ earthquake.eq_lat }}</td>
+          <td>{{ earthquake.eq_long }}</td>
+          <td>{{ earthquake.depth }}</td>
+          <td><a href="http://earthquake.usgs.gov/earthquakes/eventpage/{{ earthquake.usgs_id }}">More Info</a></td>
+        </tr>
+      {% endfor %}
+    </table>
+
+{% endblock %}
