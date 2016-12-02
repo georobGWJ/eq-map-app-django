@@ -2,6 +2,7 @@ $(document).ready(function() {
   console.log("Loaded!");
   tabActivator();
   plotEarthquakes();
+  plotCatalog();
   initMap();
 });
 
@@ -50,11 +51,28 @@ var plotEarthquakes = function() {
   // console.log("Listener loaded.")
   $('#plot-all-form').submit(function(event) {
     event.preventDefault();
-    console.log("Clicked!")
 
     $.ajax({
-            // action: "/locations",
             url: "/locations/",
+            method: "GET",
+            dataType: "json",
+            context: document.body
+          }).done(function(response) {
+            earthquakes = response;
+            eqfeed_callback(earthquakes);
+          });
+  })
+};
+
+var plotCatalog = function() {
+  // console.log("Listener loaded.")
+  $('.plot-catalog-form').submit(function(event) {
+    event.preventDefault();
+    console.log("Clicked!")
+    var cat_id = $(this)
+
+    $.ajax({
+            url: $(this).attr('action'),
             method: "GET",
             dataType: "json",
             context: document.body

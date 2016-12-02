@@ -19,9 +19,6 @@
             <button class="header-button" type="submit">HOME</button>
           </form>
         {% if user.is_authenicated %}
-          <form class="header-form" method='GET' action="/users/<%=user_logged_in.id%>">
-            <button class="header-button" type="submit">ACCOUNT</button>
-          </form>
           <form class="header-form" method='post' action='/sessions/logout'>
             <input type = 'hidden' name='_method' value='delete'>
             <button class="header-button" type="submit">LOGOUT</button>

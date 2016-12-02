@@ -54,13 +54,14 @@ body {
 }
 
 #catalog-form {
-  border: 1px solid black;
-  width: 30%
+  /*border: 1px solid black;*/
+  width: 25%;
+  vertical-align: top
 }
 
 #catalog-map {
   border: 1px solid black;
-  width: 60%
+  width: 65%
 }
 
 #main-container {

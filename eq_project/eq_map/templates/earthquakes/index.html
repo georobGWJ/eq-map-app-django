@@ -19,7 +19,7 @@
       </form>
       <hr>
       {% for location in locations %}
-      <form action="index.html" method="get">
+      <form class="plot-catalog-form" action="/locations/{{location.id}}/" method="get">
         <button class="loc-button" id="{{location.id}}" type="submit">{{ location.name }}</button>
       </form>
       {% endfor %}

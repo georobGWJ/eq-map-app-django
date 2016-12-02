@@ -112,15 +112,15 @@ def get_all_eqs(request):
 
     response = list(earthquakes.values('usgs_id', 'eq_lat', 'eq_long', 'depth', 'mag',  'location_id'))
 
-    # print(response)
     return HttpResponse(json.dumps(response), content_type="application/json")
 
-
-
 # Get Single Location EQ Data
-def get_catalog_eqs(request):
+def get_catalog_eqs(request, pk):
     earthquakes = Earthquake.objects.filter(location_id=pk)
 
+    response = list(earthquakes.values('usgs_id', 'eq_lat', 'eq_long', 'depth', 'mag',  'location_id'))
+
+    return HttpResponse(json.dumps(response), content_type="application/json")
 
 # Get EQ Visualization tab
 def get_viz_tab(request):
