@@ -47,13 +47,20 @@ urlpatterns = [
 
     url(r'^earthquakes/$', views.get_earthquake_tab, name='map_tab'),
 
+
     url(r'^user_earthquakes/$', views.get_viz_tab, name='viz_tab'),
 
     url(r'^user_earthquakes/new/$', views.get_data_tab, name='data_tab'),
 
     url(r'^user_earthquakes/post/$', views.create_catalog, name='create_catalog'),
 
-    # url(r'^$', views.get_data_tab, name='data_tab'),
+    url(r'^locations/$', views.get_all_eqs, name='get_all_eqs'),
+
+    url(r'^locations/(?P<pk>[0-9]+)/$', views.get_catalog_eqs, name='get_loc_eqs'),
+
+    url(r'^user_earthquakes/post/$', views.create_catalog, name='create_catalog'),
+
+    # url(r'^earthquakes/show/$', views.show_catalog, name='show_catalog'),
     #
     # url(r'^$', views.get_data_tab, name='data_tab'),
     #

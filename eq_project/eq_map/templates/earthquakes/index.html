@@ -10,10 +10,17 @@
         src="https://maps.googleapis.com/maps/api/js?key={{API_KEY}}&callback=initMap"></script>
       </div>
     </td>
-    <td>
+    <td id="location-button-container">
+      <form id="plot-all-form" action="{% url 'map_tab' %}" method="GET">
+        <button class="loc-button" id="plot-all-button" type="submit">SHOW ALL</button>
+      </form>
+      <form id="clear-all-form" action="{% url 'map_tab' %}" method="GET">
+        <button class="loc-button" id="clear-map-button" type="submit">CLEAR</button>
+      </form>
+      <hr>
       {% for location in locations %}
-      <form class="" action="index.html" method="get">
-        <button class="loc-button" type="submit" name="button">{{ location.name }}</button>
+      <form action="index.html" method="get">
+        <button class="loc-button" id="{{location.id}}" type="submit">{{ location.name }}</button>
       </form>
       {% endfor %}
     </td>

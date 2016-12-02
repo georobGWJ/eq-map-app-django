@@ -11,14 +11,15 @@ class Earthquake(models.Model):
     depth = models.FloatField()
     mag = models.FloatField()
     eq_date = models.DateTimeField()
+    location_id = models.PositiveSmallIntegerField()
     created_at = models.DateTimeField(auto_now_add=True, unique=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ('mag',)
 
-    def __str__(self):
-        return ('Mag: '+self.mag+'\nDate: '+self.eq_date)
+    # def __str__(self):
+    #     return ('Mag: '+str(self.mag)+'\nDate: '+str(self.eq_date))
 
 class Location(models.Model):
     name = models.CharField(max_length=120, unique=True)
@@ -62,7 +63,7 @@ class UserEarthquake(models.Model):
             eq = parsed_data[idx].split(",")
 
             # Create Earthquake Object
-            event = Earthquake.objects.create(usgs_id=eq[11], eq_lat=eq[1], eq_long=eq[2], depth=eq[3], mag=eq[4], eq_date=eq[0])
+            event = Earthquake.objects.create(usgs_id=eq[11], eq_lat=eq[1], eq_long=eq[2], depth=eq[3], mag=eq[4], eq_date=eq[0], location_id=loc.id)
 
             # Create UserEarthquake Object
             UserEarthquake.objects.create(user_id=user_id, earthquake_id=event, location_id=loc)

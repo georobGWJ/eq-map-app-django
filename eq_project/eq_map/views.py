@@ -5,10 +5,13 @@ from django.http import HttpResponse
 from django.template import loader
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import generics
+from rest_framework.decorators import api_view, renderer_classes
 from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework.response import Response
+from rest_framework.renderers import JSONRenderer
 from rest_framework.reverse import reverse
 from rest_framework import permissions
+from rest_framework import serializers
 from eq_map.models import Earthquake
 from eq_map.models import Location
 from eq_map.models import UserEarthquake
@@ -16,7 +19,8 @@ from eq_map.serializers import EarthquakeSerializer
 from eq_map.serializers import LocationSerializer
 from eq_map.serializers import UserEarthquakeSerializer
 from eq_map.serializers import UserSerializer
-
+import json
+from django.http import JsonResponse
 
 
 # =================== API VIEWS ===================
@@ -85,10 +89,38 @@ def get_data_tab(request):
     return render(request, template_name='user_earthquakes/new.html')
 
 # Get Earthquake Map tab
+# def articles(request, format=None):
+#     data= {'articles': Article.objects.all() }
+#     return Response(data, template_name='articles.html')
 def get_earthquake_tab(request):
-    queryset = Location.objects.order_by('-created_at')
-    context = {'locations': queryset}
-    return render(request=request, context=context, template_name='earthquakes/index.html')
+    locations = Location.objects.order_by('-created_at')
+    return render(request=request, context={'locations': locations}, template_name='earthquakes/index.html')
+    # return render(request=request, context=context,  template_name='earthquakes/index.html')
+
+# Get Earthquake Map tab
+# def get_catalog_tab(request, pk):
+#     locations = Location.objects.order_by('-created_at')
+#     context = {'earthquakes': eqs}
+#
+#     return render(request=request, context=context, template_name='earthquakes/index.html')
+
+# Get ALL EQ Data
+@api_view(['GET', 'POST'])
+@renderer_classes((JSONRenderer,))
+def get_all_eqs(request):
+    earthquakes = Earthquake.objects.all()
+
+    response = list(earthquakes.values('usgs_id', 'eq_lat', 'eq_long', 'depth', 'mag',  'location_id'))
+
+    # print(response)
+    return HttpResponse(json.dumps(response), content_type="application/json")
+
+
+
+# Get Single Location EQ Data
+def get_catalog_eqs(request):
+    earthquakes = Earthquake.objects.filter(location_id=pk)
+
 
 # Get EQ Visualization tab
 def get_viz_tab(request):
@@ -112,8 +144,10 @@ def create_catalog(request):
     # return render(request, template_name='users/show.html')
 
 
-# def get_data(request):
-#     return render(request, template_name='')
+# def show_catalog(request):
+#     location = request.POST.get('location')
+#     user_earthquakes = UserEarthquake.objects.filter(earthquake_id:location) Earthquake.objects.filter(earthquake_id:location)
+# #     return render(request, template_name='')
 #
 #
 # def get_data(request):
